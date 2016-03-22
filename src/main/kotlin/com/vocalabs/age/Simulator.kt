@@ -1,5 +1,7 @@
 package com.vocalabs.age
 
+import com.vocalabs.util.histogram
+
 /**
  * Created by Faizaan on 3/22/2016.
  */
@@ -19,5 +21,11 @@ class Simulator {
 }
 
 fun main (args:Array<String>){
-    println(Simulator().spawnSimulator())
+    val people = Simulator().spawnSimulator()
+    for (i in 1..7) {
+        val peopleInGeneration = people.filter { it.generation == i }
+        println("\n\n----- Generation $i ----")
+        val datesOfBirth: List<Int> = peopleInGeneration.map{it.dateOfBirth}
+        println(histogram(datesOfBirth))
+    }
 }
