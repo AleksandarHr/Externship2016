@@ -9,7 +9,7 @@ class Simulator {
     var finalList = mutableListOf(person1, person2)
     var tempList = listOf(person1, person2)
     fun spawnSimulator (): MutableList<Person> {
-        for (i in 1..7)  {
+        for (i in 0..6)  {
             tempList = tempList.flatMap { it.spawn() }
             finalList.addAll(tempList)
         }
