@@ -6,13 +6,12 @@ package com.vocalabs.age
 class Simulator {
     val person1 = Person(1, 2003)
     val person2 = Person(1, 2007)
-    val finalList = mutableListOf(person1, person2)
-    val tempList = mutableListOf<Person>()
+    var finalList = mutableListOf(person1, person2)
+    var tempList = mutableListOf(person1, person2)
     fun simulator ()  {
-    for (i in 1..7)  {
-        finalList.flatMapTo(tempList, {it.spawn()})
-
-
-
-
-}}
+        for (i in 1..7)  {
+            tempList.flatMapTo(tempList, {it.spawn()})
+            finalList.addAll(tempList)
+        }
+    }
+}
