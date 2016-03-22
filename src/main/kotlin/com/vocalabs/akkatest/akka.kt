@@ -15,6 +15,7 @@ import akka.actor.ActorRef
  */
 fun main(args: Array<String>) {
     System.out.println("Hello!")
+    System.out.println("hflkjhflkgjdahglka")
 
     for (arg in args) {
         System.out.println(hi(arg))
