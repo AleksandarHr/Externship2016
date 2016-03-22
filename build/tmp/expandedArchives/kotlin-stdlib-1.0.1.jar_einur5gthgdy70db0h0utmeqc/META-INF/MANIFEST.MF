@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Archiver-Version: Plexus Archiver
-Created-By: Apache Maven
-Built-By: teamcity
-Build-Jdk: 1.6.0_31
-Implementation-Title: kotlin-stdlib
-Implementation-Version: 1.0.1
-Implementation-Vendor-Id: org.jetbrains.kotlin
-
