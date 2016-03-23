@@ -2,14 +2,14 @@ package com.vocalabs.age
 
 import java.lang.Math
 import java.util.*
+import java.util.Random
 
 /**
  * Created by Aleksandar on 23.3.2016 г..
  */
 class GiveBirth (parent: Person) {
 
-    fun willGiveBirth (): Boolean {
-        val random = Random()
+    fun willGiveBirth (random: Random): Boolean {
         var chance = random.nextDouble()
 
         if (chance > 0.47) {
@@ -20,9 +20,9 @@ class GiveBirth (parent: Person) {
         }
     }
 
-    fun ageOfFirstBirth (): Int {
+    fun ageOfFirstBirth (random: Random): Int {
         var age: Int
-        val random = Random()
+
         age = Math.round(random.nextGaussian() * 12 + 27).toInt()
         return age
     }
