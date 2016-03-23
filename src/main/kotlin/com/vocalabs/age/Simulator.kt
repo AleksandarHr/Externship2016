@@ -17,7 +17,6 @@ class Simulator {
         }
         return finalList
     }
-
 }
 
 fun main (args:Array<String>){
