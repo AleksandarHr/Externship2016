@@ -23,7 +23,7 @@ class GiveBirth (parent: Person) {
     fun ageOfFirstBirth (): Int {
         var age: Int
         val random = Random()
-        age = Math.round(random.nextGaussian() * 27 + 12).toInt()
+        age = Math.round(random.nextGaussian() * 12 + 27).toInt()
         return age
     }
 
