@@ -16,10 +16,10 @@ class BirthSpacing (parent: Person) {
                 var child = Person(generation + 1, dateOfBirth)
                 when (i) {
                     1 -> child.dateOfBirth = firstBirthAge
-                    2 -> child.dateOfBirth = dateOfBirth + 3
-                    3 -> child.dateOfBirth = dateOfBirth + 4
-                    4 -> child.dateOfBirth = dateOfBirth + 5
-                    5 -> child.dateOfBirth = dateOfBirth + 8
+                    2 -> child.dateOfBirth = firstBirthAge + 3
+                    3 -> child.dateOfBirth = firstBirthAge + 4
+                    4 -> child.dateOfBirth = firstBirthAge + 5
+                    5 -> child.dateOfBirth = firstBirthAge + 8
                 }
                 newGeneration.add(child)
             }
