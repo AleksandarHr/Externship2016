@@ -7,13 +7,16 @@ import java.util.*
  * Created by Aleksandar on 23.3.2016 г..
  */
 class GiveBirth (parent: Person) {
-    val random = Random()
-    var chance = random.nextDouble()
 
-    fun willGiveBirth () {
-        var giveBirth = false
+    fun willGiveBirth (): Boolean {
+        val random = Random()
+        var chance = random.nextDouble()
+
         if (chance > 0.47) {
-            giveBirth = true
+            return true
+        }
+        else {
+            return false
         }
     }
 
@@ -23,4 +26,5 @@ class GiveBirth (parent: Person) {
         age = Math.round(random.nextGaussian() * 27 + 12).toInt()
         return age
     }
+
 }

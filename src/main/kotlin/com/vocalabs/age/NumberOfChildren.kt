@@ -7,18 +7,14 @@ import java.util.*
  */
 
 class NumberOfChildren {
-    var random = Random()
-    var numOfChildren = IntArray(10)
-    fun calculateNumberOfChildren() {
-        var index = 0
-        var gaussian: Double
-        for (i in 1..10) {
-            gaussian = random.nextGaussian() * 1 + 2.5
-            println(gaussian)
-            if (gaussian >= 0.0 && gaussian <= 0.5) {
-                numOfChildren[index] = Math.round(gaussian).toInt()
-                index++
-            }
-        }
+
+     fun calculateNumberOfChildren(): Int {
+         var random = Random()
+         var numOfChildren = 0
+         var gaussian = random.nextGaussian() * 1 + 2.5
+              if (gaussian >= 0.0 && gaussian <= 5.0) {
+                 numOfChildren = Math.round(gaussian).toInt()
+              }
+          return numOfChildren
     }
 }
