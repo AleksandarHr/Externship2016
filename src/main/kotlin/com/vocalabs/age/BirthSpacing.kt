@@ -1,8 +1,5 @@
 package com.vocalabs.age
 
-import scala.collection.mutable.MutableList
-import java.awt.List
-
 /**
  * Created by Aleksandar on 23.3.2016 г..
  */

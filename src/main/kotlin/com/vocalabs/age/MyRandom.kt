@@ -5,7 +5,7 @@ import java.util.Random
 /**
  * Created by Aleksandar on 23.3.2016 г..
  */
-class Random {
+class MyRandom {
 
     fun willGiveBirth (random: Random): Boolean {
         var chance = random.nextDouble()
