@@ -47,17 +47,21 @@ fun main (args:Array<String>){
         throw IllegalArgumentException()
     }
 
-    val myList = listOf<Person>(Person(1,2007),(Person(1,2003)),(Person(2,2004)))
-    //val people = newSimulator().spawnSimulator()
-    val lines: List<String> = generations.map{"${it.generation},${it.dateOfBirth}"}
-    println("generation,dateOfBirth \n${lines.joinToString(separator = "\n")}")
-
-    /*
-    for (i in 1..numberOfGens.toInt()) {
-        val peopleInGeneration = generations.filter { it.generation == i }
-        println("\n\n----- Generation $i ----")
-        val datesOfBirth: List<Int> = peopleInGeneration.map{it.dateOfBirth}
-        println(histogram(datesOfBirth))
+    println("Choose an output form: 'cvs' or 'histogram'")
+    val outputForm = readLine()
+    if (outputForm == "cvs") {
+        //val myList = listOf<Person>(Person(1,2007),(Person(1,2003)),(Person(2,2004)))
+        //val people = newSimulator().spawnSimulator()
+        val lines: List<String> = generations.map { "${it.generation},${it.dateOfBirth}" }
+        println("generation,dateOfBirth \n${lines.joinToString(separator = "\n")}")
     }
-    */
+    else if (outputForm == "histogram") {
+        for (i in 0..numberOfGens.toInt()) {
+            val peopleInGeneration = generations.filter { it.generation == i }
+            println("\n\n----- Generation $i ----")
+            val datesOfBirth: List<Int> = peopleInGeneration.map{it.dateOfBirth}
+            println(histogram(datesOfBirth))
+        }
+    }
+
 }
