@@ -21,7 +21,7 @@ class NewPersonTest {
         assertTrue(personTester.willGiveBirth(0.48))
         assertTrue(personTester.willGiveBirth(1.0))
         assertTrue(personTester.willGiveBirth(0.67))
-        // willGiveBirth returns false fr any value larger than or equal to 0.47
+        // willGiveBirth returns false fr any value smaller than or equal to 0.47
         assertFalse(personTester.willGiveBirth(0.0))
         assertFalse(personTester.willGiveBirth(0.47))
         assertFalse(personTester.willGiveBirth(0.46))

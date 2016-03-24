@@ -19,7 +19,7 @@ class Simulator {
     }
 }
 
-fun main (args:Array<String>){
+fun main (args: Array<String>){
     val people = Simulator().spawnSimulator()
     for (i in 1..7) {
         val peopleInGeneration = people.filter { it.generation == i }
