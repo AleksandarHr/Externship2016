@@ -29,9 +29,14 @@ class NewPersonTest {
 
     @Test
     fun ageOfFirstBirth() {
-        val gaussianValue = random.nextGaussian()
         // calculates the age of first birth the formula and compares it to the number returned by the function
-        assertEquals(Math.round(gaussianValue * 12 + 27).toInt(), personTester.ageOfFirstBirth(gaussianValue))
+        assertEquals(Math.round(-1.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(-1.0))
+        assertEquals(Math.round(1.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(1.0))
+        assertEquals(Math.round(0.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(0.0))
+        //assertEquals(Math.round(Double.NEGATIVE_INFINITY * 12 + 27).toInt(),
+        //        personTester.ageOfFirstBirth(Double.NEGATIVE_INFINITY))
+        //assertEquals(Math.round(Double.POSITIVE_INFINITY * 12 + 27).toInt(),
+        //        personTester.ageOfFirstBirth(Double.POSITIVE_INFINITY))
     }
 
     @Test
@@ -51,13 +56,10 @@ class NewPersonTest {
     fun giveBirth() {
         // number of children less than or equal to 0 or larger than 5 will produce 0 kids
         // any other number of kids x, will produce will produce x kids
-        assertEquals(0, personTester.giveBirth(-1, firstBirth).size)
-        firstBirth = random.nextInt(35)+15
-        assertEquals(0, personTester.giveBirth(6, firstBirth).size)
-        firstBirth = random.nextInt(35)+15
-        assertEquals(0, personTester.giveBirth(6, firstBirth).size)
-        firstBirth = random.nextInt(35)+15
-        assertEquals(3, personTester.giveBirth(3, firstBirth).size)
+        assertEquals(0, personTester.giveBirth(-1, 30).size)
+        assertEquals(0, personTester.giveBirth(6, 26).size)
+        assertEquals(0, personTester.giveBirth(6, 49).size)
+        assertEquals(3, personTester.giveBirth(3, 32).size)
 
         // each kid from the following generation will be generation 2 as the tester person is generation 1
         assertEquals(2, personTester.giveBirth(5, firstBirth)[0].generation)
@@ -67,25 +69,20 @@ class NewPersonTest {
         assertEquals(2, personTester.giveBirth(5, firstBirth)[4].generation)
 
         // the dob of the first kid will be the same as the calculated value for firstBirth
-        firstBirth = random.nextInt(35)+15
-        assertEquals(personTester.dateOfBirth + firstBirth, personTester.giveBirth(1,firstBirth)[0].dateOfBirth)
-        firstBirth = random.nextInt(35)+15
-        assertEquals(personTester.dateOfBirth + firstBirth, personTester.giveBirth(5,firstBirth)[0].dateOfBirth)
+
+        assertEquals(personTester.dateOfBirth + 35, personTester.giveBirth(1,35)[0].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + 65, personTester.giveBirth(5,65)[0].dateOfBirth)
 
         // dob of second kid will be 3 years after the firstBirth
-        firstBirth = random.nextInt(35)+15
-        assertEquals(personTester.dateOfBirth + firstBirth + 3, personTester.giveBirth(2,firstBirth)[1].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + 22 + 3, personTester.giveBirth(2,22)[1].dateOfBirth)
 
         // dob of the third kid will be 4 years after the firstBirth
-        firstBirth = random.nextInt(35)+15
-        assertEquals(personTester.dateOfBirth + firstBirth + 4, personTester.giveBirth(3,firstBirth)[2].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + 30 + 4, personTester.giveBirth(3,30)[2].dateOfBirth)
 
         // dob of the fourth kid will be 5 years after the firstBirth
-        firstBirth = random.nextInt(35)+15
-        assertEquals(personTester.dateOfBirth + firstBirth + 5, personTester.giveBirth(4,firstBirth)[3].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + 24 + 5, personTester.giveBirth(4,24)[3].dateOfBirth)
 
-        // dob of the fifth kid will be 8 years after the firstBirth
         firstBirth = random.nextInt(35)+15
-        assertEquals(personTester.dateOfBirth + firstBirth + 8, personTester.giveBirth(5,firstBirth)[4].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + 15 + 8, personTester.giveBirth(5,15)[4].dateOfBirth)
     }
 }
