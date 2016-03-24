@@ -11,7 +11,6 @@ import org.junit.Assert.*
 class NewPersonTest {
     val random = Random()
 
-
     val personTester = NewPerson(1, 2000)
     var firstBirth = random.nextInt(35)+15
 
@@ -69,24 +68,24 @@ class NewPersonTest {
 
         // the dob of the first kid will be the same as the calculated value for firstBirth
         firstBirth = random.nextInt(35)+15
-        assertEquals(firstBirth, personTester.giveBirth(1,firstBirth)[0].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + firstBirth, personTester.giveBirth(1,firstBirth)[0].dateOfBirth)
         firstBirth = random.nextInt(35)+15
-        assertEquals(firstBirth, personTester.giveBirth(5,firstBirth)[0].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + firstBirth, personTester.giveBirth(5,firstBirth)[0].dateOfBirth)
 
         // dob of second kid will be 3 years after the firstBirth
         firstBirth = random.nextInt(35)+15
-        assertEquals(firstBirth + 3, personTester.giveBirth(2,firstBirth)[1].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + firstBirth + 3, personTester.giveBirth(2,firstBirth)[1].dateOfBirth)
 
         // dob of the third kid will be 4 years after the firstBirth
         firstBirth = random.nextInt(35)+15
-        assertEquals(firstBirth + 4, personTester.giveBirth(3,firstBirth)[2].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + firstBirth + 4, personTester.giveBirth(3,firstBirth)[2].dateOfBirth)
 
         // dob of the fourth kid will be 5 years after the firstBirth
         firstBirth = random.nextInt(35)+15
-        assertEquals(firstBirth + 5, personTester.giveBirth(4,firstBirth)[3].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + firstBirth + 5, personTester.giveBirth(4,firstBirth)[3].dateOfBirth)
 
         // dob of the fifth kid will be 8 years after the firstBirth
         firstBirth = random.nextInt(35)+15
-        assertEquals(firstBirth + 8, personTester.giveBirth(5,firstBirth)[4].dateOfBirth)
+        assertEquals(personTester.dateOfBirth + firstBirth + 8, personTester.giveBirth(5,firstBirth)[4].dateOfBirth)
     }
 }
