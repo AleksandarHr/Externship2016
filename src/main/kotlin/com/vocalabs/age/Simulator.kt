@@ -1,30 +1,52 @@
 package com.vocalabs.age
 
 import com.vocalabs.util.histogram
+import java.util.*
 
 /**
- * Created by Faizaan on 3/22/2016.
+ * Created by Aleksandar on 24.3.2016 г..
  */
-class Simulator {
-    val person1 = Person(1, 2003)
-    val person2 = Person(1, 2007)
-    var finalList = mutableListOf(person1, person2)
-    var tempList = listOf(person1, person2)
-    fun spawnSimulator (): MutableList<Person> {
-        for (i in 0..6)  {
-            tempList = tempList.flatMap { it.spawn() }
-            finalList.addAll(tempList)
+fun main(args: Array<String>) {
+    println("Choose an output form: 'csv' or 'histogram'")
+    val outputForm = readLine()
+    val consumer = when (outputForm) {
+        "csv" -> CsvPersonConsumer()
+        "histogram" -> HistogramPersonConsumer()
+        else -> throw Exception("Unknown form $outputForm")
+    }
+    println("Give parent's year of birth")
+    val random = Random()
+    val yearOfBirth = readLine()
+    val yearOfBirthInt: Int
+    if (yearOfBirth is String) {
+        if (yearOfBirth.toInt() is Int) {
+            yearOfBirthInt = yearOfBirth.toInt()
+        } else {
+            throw IllegalArgumentException()
         }
-        return finalList
+    } else {
+        throw IllegalArgumentException()
     }
-}
 
-fun main (args: Array<String>){
-    val people = Simulator().spawnSimulator()
-    for (i in 1..7) {
-        val peopleInGeneration = people.filter { it.generation == i }
-        println("\n\n----- Generation $i ----")
-        val datesOfBirth: List<Int> = peopleInGeneration.map{it.dateOfBirth}
-        println(histogram(datesOfBirth))
+    val parent = NewPerson (0, yearOfBirthInt)
+    var temp = listOf(parent)
+    var generations = listOf(parent)
+    println("How many generations do you want?")
+    val numberOfGens = readLine()!!.toInt()
+    for (i in 0..(numberOfGens.toInt() - 1)) {
+        temp = temp.flatMap {
+            it.giveBirth(it.
+                    calculateNumberOfChildren(random.nextGaussian()),
+                    it.ageOfFirstBirth(random.nextGaussian()))
+        }
+        generations += (temp)
     }
+    consumer.start()
+    for (i in 1..numberOfGens) {
+        val currentGen = generations.filter { it.generation == i }
+        consumer.read(currentGen)
+    }
+    consumer.end()
+
+
 }
