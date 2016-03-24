@@ -40,7 +40,7 @@ fun main (args:Array<String>){
     val numberOfGens = readLine()
     if (numberOfGens is String && numberOfGens.toInt() is Int &&
         numberOfSimulations is String && numberOfSimulations.toInt() is Int) {
-        for (i in 1..numberOfSimulations.toInt()) {
+       //for (i in 1..numberOfSimulations.toInt()) {
             for (j in 0..(numberOfGens.toInt() - 1)) {
                 temp = temp.flatMap {
                     it.giveBirth(it.
@@ -49,7 +49,7 @@ fun main (args:Array<String>){
                 }
                 generations.addAll(temp)
             }
-        }
+        //}
     }
     else {
         throw IllegalArgumentException()
