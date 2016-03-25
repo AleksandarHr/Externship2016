@@ -31,7 +31,6 @@ fun main(args: Array<String>) {
     println("How many generations do you want?")
     val numberOfGens = readLine()!!.toInt()
 
-
     Simulator(yearOfBirthInt, numberOfGens, consumer).run()
 }
 

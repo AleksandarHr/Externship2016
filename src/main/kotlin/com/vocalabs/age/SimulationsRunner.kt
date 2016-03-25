@@ -3,8 +3,9 @@ package com.vocalabs.age
 import com.vocalabs.util.histogram
 import java.util.*
 
+
 /** Runs a Simulator and merges the results of each. */
-class SimulationRunner(simulator: Simulator) : SimulationRun {
+class SimulationsRunner(simulator: Simulator) : SimulationRun {
 
     val random = Random()
     override fun runGeneration(previousGeneration: Iterable<Person>): List<Person> {
@@ -21,7 +22,7 @@ class SimulationRunner(simulator: Simulator) : SimulationRun {
         //    for giving birth to the generations after them
         var temp = listOf(parent)
         // The treeMap 'generationsMap' is the one all generations are stored
-        var generationsMap = TreeMap<Int, MutableList<Int>>()
+        var generationsMap = TreeMap<Int, List<Person>>()
 
         val random = Random()
         // for loop to run each simulation as many times as the number of generations specified
@@ -32,9 +33,9 @@ class SimulationRunner(simulator: Simulator) : SimulationRun {
                         it.ageOfFirstBirth(random.nextGaussian()))
             }
             // adding the generations to the map
-            var listOfYears = mutableListOf<Int>()
+            var listOfYears = mutableListOf<Person>()
             for (k in 0..temp.size - 1) {
-                listOfYears.add(temp[k].dateOfBirth)
+                listOfYears.add(temp[k])
                 generationsMap.put(j, listOfYears)
             }
         }
@@ -43,9 +44,9 @@ class SimulationRunner(simulator: Simulator) : SimulationRun {
 
     /**
      * Run multiple simulations and return a map of generations to a count of each
-     * person per year. I.e. Map(generation) -> Map(year) -> count.
+     * person per year. I.e. Map(generation) -> people.
      */
-    fun run(numberOfSimulations: Int): Map<Int, List<Person>> {
+    fun run(numberOfSimulations: Int): TreeMap<Int, List<Person>> {
         // *** Output format for each generation ***
         println("\n\n********** SIMULATION $i **********")
         println("*** Parent from generation 0 with year of birth: " + parent.dateOfBirth)
