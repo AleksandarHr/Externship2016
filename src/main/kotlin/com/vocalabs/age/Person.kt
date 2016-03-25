@@ -33,6 +33,9 @@ data class Person(val generation: Int, var dateOfBirth: Int) {
 
     fun giveBirth (numberOfKids: Int, firstBirthAge: Int): kotlin.collections.MutableList<Person> {
         var newGeneration = mutableListOf<Person>()
+        // Number of kids below 0 is not considered and
+        //    number of kids above 5 is statistically rare enough to ignore
+        if (numberOfKids in 1..5) {
             for (i in 1..numberOfKids) {
                 val child = Person(this.generation + 1, firstBirthAge)
                 when (i) {
@@ -44,6 +47,7 @@ data class Person(val generation: Int, var dateOfBirth: Int) {
                 }
                 newGeneration.add(child)
             }
+        }
         return newGeneration
     }
 
