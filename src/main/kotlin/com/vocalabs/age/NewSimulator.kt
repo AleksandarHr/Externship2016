@@ -4,10 +4,8 @@ import com.vocalabs.util.histogram
 import java.util.*
 
 /**
- * Created by Aleksandar on 24.3.2016 г..
+ * New Simulator using Lists
  */
-class NewSimulator {
-}
 
 fun main (args:Array<String>){
     // Getting the year of birth of the initial parent as user input

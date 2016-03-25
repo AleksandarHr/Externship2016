@@ -1,10 +1,8 @@
 package com.vocalabs.age
-
-import com.vocalabs.util.histogram
 import java.util.*
 
 /**
- * Created by Aleksandar on 24.3.2016 г..
+ * Old simulator
  */
 fun main(args: Array<String>) {
     println("Choose an output form: 'csv' or 'histogram'")
