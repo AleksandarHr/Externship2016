@@ -7,10 +7,10 @@ package com.vocalabs.age
 fun main(args: Array<String>) {
     val   startYear = 1972
     val generations = 7
-    val numberOfGenerations = 1000
-    val    consumer = HistogramPersonConsumer(numberOfGenerations.toDouble())
+    val numberOfSimulations = 1000
+    val    consumer = HistogramPersonConsumer(numberOfSimulations.toDouble())
     val mySimulator = Simulator(startYear, generations, consumer)
 
-    val simulationResult = SimulationsRunner(mySimulator).run(numberOfGenerations)
+    val simulationResult = SimulationsRunner(mySimulator).run(numberOfSimulations)
     mySimulator.write(simulationResult)
 }
