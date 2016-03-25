@@ -1,35 +1,20 @@
 package com.vocalabs.age
 import java.lang.Math
-import java.util.Random
 
 /**
- * Created by Aleksandar on 23.3.2016 г..
+ * Models human reproduction
  */
 class NewPerson (val generation: Int, var dateOfBirth: Int) {
 
-    val random = Random()
-    val doubleRandom = random.nextDouble()
-    val gaussianRandom = random.nextGaussian()
-
-    fun willGiveBirth (chance: Double): Boolean {
-        if (chance > 0.47) {
-            return true
-        }
-        else {
-            return false
-        }
-    }
+    fun willGiveBirth (chance: Double): Boolean = chance > 0.47
 
     fun ageOfFirstBirth (gaussian: Double): Int {
-        var age: Int
-        age = Math.round(gaussian * 12 + 27).toInt()
-        if (age < 15) {
-            age = 15
+        val age = Math.round(gaussian * 12 + 27).toInt()
+        return when {
+            age < 15 -> 15
+            age > 70 -> 70
+            else     -> age
         }
-        else if (age > 70) {
-            age = 70
-        }
-        return age
     }
 
     fun yearOfFirstBirth (dateOfBirth: Int, firstBirthAt: Int): Int {
@@ -37,10 +22,10 @@ class NewPerson (val generation: Int, var dateOfBirth: Int) {
     }
 
     fun calculateNumberOfChildren(gaussianDouble: Double): Int {
-        var numOfChildren = 0
-        var gaussian = gaussianDouble * 1 + 2.5
+        val numOfChildren = 0
+        val gaussian = gaussianDouble * 1 + 2.5
         if (gaussian >= 0.0 && gaussian <= 5.0) {
-            numOfChildren = Math.round(gaussian).toInt()
+            return Math.round(gaussian).toInt()
         }
         return numOfChildren
     }
