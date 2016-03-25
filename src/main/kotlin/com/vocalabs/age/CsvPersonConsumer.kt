@@ -1,13 +1,12 @@
 package com.vocalabs.age
 import com.vocalabs.util.countDuplicates
-import java.util.*
-
 /**
  * Prints CSV to standard out.
  */
 class CsvPersonConsumer : PersonConsumer {
     override fun read(people: List<Person>) {
-        val generation = people.first().generation ?: return
+        val personOrNull = people.firstOrNull() ?: return
+        val generation : Int = personOrNull.generation
         val dates = people.map { it.dateOfBirth }
         val counts = countDuplicates(dates)
         counts.forEach { year, count ->
