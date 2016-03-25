@@ -48,8 +48,11 @@ fun histogram(items: Iterable<Int>): String {
 fun countDuplicates(items: Iterable<Int>): TreeMap<Int,Int> {
     val counts = TreeMap<Int,Int>()
     for (item in items) {
-        val oldCount = counts.get(item)
-        val count = if (oldCount == null) 1 else 1+oldCount
+        val oldCount = counts[item]
+        val count = when (oldCount) {
+            null -> 1
+            else -> 1+oldCount
+        }
         counts.put(item, count)
     }
     return counts
