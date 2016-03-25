@@ -4,7 +4,7 @@ import java.lang.Math
 /**
  * Models human reproduction
  */
-class Person(val generation: Int, var dateOfBirth: Int) {
+data class Person(val generation: Int, var dateOfBirth: Int) {
 
     fun willGiveBirth (chance: Double): Boolean = chance > 0.47
 
