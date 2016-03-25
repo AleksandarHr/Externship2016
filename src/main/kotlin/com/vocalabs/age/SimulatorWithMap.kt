@@ -46,7 +46,7 @@ fun main(args: Array<String>) {
                 temp = temp.flatMap {
                     it.giveBirth(
                             it.calculateNumberOfChildren(random.nextGaussian()),
-                            it.ageOfFirstBirth(random.nextGaussian()))
+                            it.ageOfFirstBirth(random))
                 }
                 // adding the generations to the map
                 var listOfYears = mutableListOf<Int>()

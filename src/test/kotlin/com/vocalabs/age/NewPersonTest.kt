@@ -5,9 +5,7 @@ import java.util.Random
 
 import org.junit.Assert.*
 
-/**
- * Created by Aleksandar on 23.3.2016 г..
- */
+
 class NewPersonTest {
     val random = Random()
 
@@ -29,14 +27,16 @@ class NewPersonTest {
 
     @Test
     fun ageOfFirstBirth() {
+        fail("Need to update for new behavior") /*
         // calculates the age of first birth the formula and compares it to the number returned by the function
-        assertEquals(Math.round(-1.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(-1.0))
-        assertEquals(Math.round(1.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(1.0))
-        assertEquals(Math.round(0.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(0.0))
+        assertEquals(Math.round(-1.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(MockRandom(- 1.0)))
+        assertEquals(Math.round(1.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(MockRandom(1.0)))
+        assertEquals(Math.round(0.0 * 12 + 27).toInt(), personTester.ageOfFirstBirth(MockRandom(0.0)))
         //assertEquals(Math.round(Double.NEGATIVE_INFINITY * 12 + 27).toInt(),
         //        personTester.ageOfFirstBirth(Double.NEGATIVE_INFINITY))
         //assertEquals(Math.round(Double.POSITIVE_INFINITY * 12 + 27).toInt(),
         //        personTester.ageOfFirstBirth(Double.POSITIVE_INFINITY))
+        */
     }
 
     @Test
@@ -84,5 +84,17 @@ class NewPersonTest {
 
         firstBirth = random.nextInt(35)+15
         assertEquals(personTester.dateOfBirth + 15 + 8, personTester.giveBirth(5,15)[4].dateOfBirth)
+    }
+}
+
+class MockRandom(val gaussian1: Double, val gaussian2: Double = 0.0): Random() {
+    var first: Boolean = true
+    override fun nextGaussian(): Double {
+        if (first) {
+            first = false
+            return gaussian1
+        }
+        else
+            return gaussian2
     }
 }

@@ -5,8 +5,12 @@ package com.vocalabs.age
  */
 
 fun main(args: Array<String>) {
-    val   startYear = 2000
+    val   startYear = 1972
     val generations = 7
-    val    consumer = HistogramPersonConsumer()
-    Simulator(startYear, generations, consumer).run()
+    val numberOfGenerations = 1000
+    val    consumer = HistogramPersonConsumer(numberOfGenerations.toDouble())
+    val mySimulator = Simulator(startYear, generations, consumer)
+
+    val simulationResult = SimulationsRunner(mySimulator).run(numberOfGenerations)
+    mySimulator.write(simulationResult)
 }

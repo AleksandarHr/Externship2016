@@ -31,15 +31,17 @@ fun <T, R> Iterable<T>.pmap(
     return destination
 }
 
-fun histogram(items: Iterable<Int>): String {
+fun histogram(items: Iterable<Int>, denominator: Double = 1.0): String {
     val counts = countDuplicates(items)
     val result = StringBuilder()
+    val max = counts.maxBy { it.value }!!.value
     for (pair in counts) {
         result.append("${pair.key} ")
-        for (num in 1..pair.value) {
+        val percent = pair.value * 100 / max
+        for (num in 1..percent) {
             result.append("#")
         }
-        result.append("\n")
+        result.append(" ${percent} \n")
     }
     return result.toString()
 }
