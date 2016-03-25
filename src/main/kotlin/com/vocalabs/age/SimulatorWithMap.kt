@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
     println("How many simulations do you want to run?")
     val numberOfSimulations = readLine()
     // Getting the number of generations as user input and those generations are spawned
-    println("How many generations do you want?")
+    println("How many generations per simulation do you want?")
     val numberOfGens = readLine()
     // Asking for output form as user input
     println("Choose an output form: 'csv' or 'histogram'")
@@ -82,21 +82,4 @@ fun main(args: Array<String>) {
     }
 }
 
-interface SimulationRun {
-    fun runGeneration(previousGeneration: Iterable<Person>): List<Person>
 
-    /** Return a map of generations to a count of each person per year. I.e. Map(generation) -> Map(year) -> count. */
-    fun runSimulation(): Map<Int,Map<Int,Int>>
-}
-
-/** Runs a Simulator and merges the results of each. */
-class SimulatonRunner(simulator: Simulator) {
-
-    /**
-     * Run multiple simulations and return a map of generations to a count of each
-     * person per year. I.e. Map(generation) -> Map(year) -> count.
-     */
-    fun run(numberOfSimulations: Int): Map<Int,Iterable<Person>> {
-        throw UnsupportedOperationException("Not written") // TODO
-    }
-}
