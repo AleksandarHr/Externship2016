@@ -2,10 +2,11 @@ package com.vocalabs.age
 
 import com.vocalabs.util.histogram
 import java.util.*
+
 /**
  *  Simulates multiple generations
  */
-fun main (args:Array<String>){
+fun main(args: Array<String>) {
 
     // Getting the year of birth of the initial parent as user input
     println("Give parent's year of birth")
@@ -13,8 +14,7 @@ fun main (args:Array<String>){
     val yearOfBirthInt: Int
     if (yearOfBirth is String && yearOfBirth.toInt() is Int) {
         yearOfBirthInt = yearOfBirth.toInt()
-    }
-    else {
+    } else {
         throw IllegalArgumentException()
     }
 
@@ -42,43 +42,61 @@ fun main (args:Array<String>){
             var generationsMap = TreeMap<Int, MutableList<Int>>()
 
             // for loop to run each simulation as many times as the number of generations specified
-            for (j in 0..(numberOfGens.toInt())-1) {
-            temp = temp.flatMap {it.giveBirth(
-                    it.calculateNumberOfChildren(random.nextGaussian()),
-                    it.ageOfFirstBirth(random.nextGaussian()))
-            }
-            // adding the generations to the map
-            var listOfYears = mutableListOf<Int>()
-            for (k in 0..temp.size - 1) {
-                listOfYears.add(temp[k].dateOfBirth)
-                generationsMap.put(j, listOfYears)
-            }
+            for (j in 0..(numberOfGens.toInt()) - 1) {
+                temp = temp.flatMap {
+                    it.giveBirth(
+                            it.calculateNumberOfChildren(random.nextGaussian()),
+                            it.ageOfFirstBirth(random.nextGaussian()))
+                }
+                // adding the generations to the map
+                var listOfYears = mutableListOf<Int>()
+                for (k in 0..temp.size - 1) {
+                    listOfYears.add(temp[k].dateOfBirth)
+                    generationsMap.put(j, listOfYears)
+                }
             }
 
             // *** Output format for each generation ***
             println("\n\n********** SIMULATION $i **********")
             println("*** Parent from generation 0 with year of birth: " + yearOfBirth)
             for (m in 0..generationsMap.size - 1) {
-                println("Generation: " + (m+1) + " years of births: " + generationsMap.get(m))
+                println("Generation: " + (m + 1) + " years of births: " + generationsMap.get(m))
             }
             // Print as 'csv'
             if (outputForm == "csv") {
-                    val lines: List<String> = generationsMap.map { "${it.key+1}, ${it.value}" }
-                    println("generation,dateOfBirth \n${lines.joinToString(separator = "\n")}\n\n")
+                val lines: List<String> = generationsMap.map { "${it.key + 1}, ${it.value}" }
+                println("generation,dateOfBirth \n${lines.joinToString(separator = "\n")}\n\n")
             }
             // Print as a histogram
             else if (outputForm == "histogram") {
-                for (p in 0..numberOfGens.toInt()-1) {
+                for (p in 0..numberOfGens.toInt() - 1) {
                     val peopleInGeneration = generationsMap.filter { it.key == p }
-                    println("\n\n----- Generation ${p+1} ----")
+                    println("\n\n----- Generation ${p + 1} ----")
                     val datesOfBirth: List<Int> = peopleInGeneration.flatMap { it.value }
-                    println(histogram(datesOfBirth)+ "\n\n\n")
+                    println(histogram(datesOfBirth) + "\n\n\n")
                 }
             }
         }
-    }
-
-    else {
+    } else {
         throw IllegalArgumentException()
+    }
+}
+
+interface SimulationRun {
+    fun runGeneration(previousGeneration: Iterable<NewPerson>): List<NewPerson>
+
+    /** Return a map of generations to a count of each person per year. I.e. Map(generation) -> Map(year) -> count. */
+    fun runSimulation(): Map<Int,Map<Int,Int>>
+}
+
+/** Runs a Simulator and merges the results of each. */
+class SimulatonRunner(simulator: Simulator) {
+
+    /**
+     * Run multiple simulations and return a map of generations to a count of each
+     * person per year. I.e. Map(generation) -> Map(year) -> count.
+     */
+    fun run(numberOfSimulations: Int): Map<Int,Map<Int,Int>> {
+        throw UnsupportedOperationException("Not written") // TODO
     }
 }
