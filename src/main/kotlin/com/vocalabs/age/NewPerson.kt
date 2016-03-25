@@ -48,7 +48,7 @@ class NewPerson (val generation: Int, var dateOfBirth: Int) {
     fun giveBirth (numberOfKids: Int, firstBirthAge: Int): kotlin.collections.MutableList<NewPerson> {
         var newGeneration = mutableListOf<NewPerson>()
         if (numberOfKids <= 0) {
-            println("No kids will be born from the person from generation: " + this.generation)
+            println("For the next simulation, no kids will be born from the person from generation: " + this.generation)
             println("and year of birth: " + this.dateOfBirth)
         }
         else if (numberOfKids > 5) {
