@@ -28,25 +28,34 @@ fun main(args: Array<String>) {
         throw IllegalArgumentException()
     }
 
-    val parent = NewPerson (0, yearOfBirthInt)
-    var temp = listOf(parent)
-    var generations = listOf(parent)
+    // ---------------------------------------------------------------------------------
+
     println("How many generations do you want?")
     val numberOfGens = readLine()!!.toInt()
-    for (i in 0..(numberOfGens.toInt() - 1)) {
-        temp = temp.flatMap {
-            it.giveBirth(it.
-                    calculateNumberOfChildren(random.nextGaussian()),
-                    it.ageOfFirstBirth(random.nextGaussian()))
+
+
+    Simulator(yearOfBirthInt, numberOfGens, consumer).run()
+}
+
+class Simulator(val yearOfBirthInt: Int, val numberOfGens: Int, val consumer: PersonConsumer) {
+    fun run() {
+        val random = Random()
+        val parent = NewPerson (0, yearOfBirthInt)
+        var temp = listOf(parent)
+        var generations = listOf(parent)
+        for (i in 0..(numberOfGens.toInt() - 1)) {
+            temp = temp.flatMap {
+                it.giveBirth(it.
+                        calculateNumberOfChildren(random.nextGaussian()),
+                        it.ageOfFirstBirth(random.nextGaussian()))
+            }
+            generations += (temp)
         }
-        generations += (temp)
+        consumer.start()
+        for (i in 1..numberOfGens) {
+            val currentGen = generations.filter { it.generation == i }
+            consumer.read(currentGen)
+        }
+        consumer.end()
     }
-    consumer.start()
-    for (i in 1..numberOfGens) {
-        val currentGen = generations.filter { it.generation == i }
-        consumer.read(currentGen)
-    }
-    consumer.end()
-
-
 }

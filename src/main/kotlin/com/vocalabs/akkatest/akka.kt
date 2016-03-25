@@ -1,14 +1,5 @@
 package com.vocalabs.akkatest
 
-import akka.actor.ActorSystem
-/*
-import akka.actor.Props
-import akka.actor.UntypedActor
-import akka.actor.UntypedActorContext
-import akka.actor.ActorPath
-import akka.actor.ActorSystem
-import akka.actor.ActorRef
-*/
 import com.vocalabs.util.pmap
 
 /**
@@ -27,8 +18,6 @@ fun main(args: Array<String>) {
         "$x -> $y"
     }
     println(results)
-
-    System.out.println("ActorSystem home: "+ActorSystem.SystemHome())
 }
 
 private fun hi(s: String) = "Hello, $s"
