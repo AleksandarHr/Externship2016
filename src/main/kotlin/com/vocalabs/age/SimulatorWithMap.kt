@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
     }
 
     // Creates a the initial person (parent) with the given YOB
-    val parent = NewPerson (0, yearOfBirthInt)
+    val parent = Person (0, yearOfBirthInt)
     // Getting the number of simulations to run as user input
     println("How many simulations do you want to run?")
     val numberOfSimulations = readLine()
@@ -83,7 +83,7 @@ fun main(args: Array<String>) {
 }
 
 interface SimulationRun {
-    fun runGeneration(previousGeneration: Iterable<NewPerson>): List<NewPerson>
+    fun runGeneration(previousGeneration: Iterable<Person>): List<Person>
 
     /** Return a map of generations to a count of each person per year. I.e. Map(generation) -> Map(year) -> count. */
     fun runSimulation(): Map<Int,Map<Int,Int>>
@@ -96,7 +96,7 @@ class SimulatonRunner(simulator: Simulator) {
      * Run multiple simulations and return a map of generations to a count of each
      * person per year. I.e. Map(generation) -> Map(year) -> count.
      */
-    fun run(numberOfSimulations: Int): Map<Int,Map<Int,Int>> {
+    fun run(numberOfSimulations: Int): Map<Int,Iterable<Person>> {
         throw UnsupportedOperationException("Not written") // TODO
     }
 }

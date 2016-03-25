@@ -38,7 +38,7 @@ fun main(args: Array<String>) {
 class Simulator(val yearOfBirthInt: Int, val numberOfGens: Int, val consumer: PersonConsumer) {
     fun run() {
         val random = Random()
-        val parent = NewPerson (0, yearOfBirthInt)
+        val parent = Person (0, yearOfBirthInt)
         var temp = listOf(parent)
         var generations = listOf(parent)
         for (i in 0..(numberOfGens.toInt() - 1)) {

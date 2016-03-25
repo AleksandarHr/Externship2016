@@ -21,7 +21,7 @@ fun main (args:Array<String>){
     }
 
     // Creates a the initial person (parent) with the given YOB
-    val parent = NewPerson (0, yearOfBirthInt)
+    val parent = Person (0, yearOfBirthInt)
 
     // The list 'temp' will store only the new generations born in order to be used
     //    for giving birth to the generations after them

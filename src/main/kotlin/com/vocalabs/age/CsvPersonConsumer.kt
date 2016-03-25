@@ -6,7 +6,7 @@ import com.vocalabs.util.countDuplicates
  * Prints CSV to standard out.
  */
 class CsvPersonConsumer : PersonConsumer {
-    override fun read(people: List<NewPerson>) {
+    override fun read(people: List<Person>) {
         throw UnsupportedOperationException("Not written") // TODO
         //generations.forEach {
         //    println("${it.generation},${it.dateOfBirth},???" )

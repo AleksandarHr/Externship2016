@@ -11,7 +11,7 @@ import org.junit.Assert.*
 class NewPersonTest {
     val random = Random()
 
-    val personTester = NewPerson(1, 2000)
+    val personTester = Person(1, 2000)
     var firstBirth = random.nextInt(35)+15
 
     @Test

@@ -5,7 +5,7 @@ package com.vocalabs.age
  */
 interface PersonConsumer {
     /** read takes a single generation and each generation must be given in the correct order  */
-    fun read(people: List<NewPerson>)
+    fun read(people: List<Person>)
     fun start() {}
     fun end() {}
 }

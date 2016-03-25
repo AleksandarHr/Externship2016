@@ -4,7 +4,7 @@ import java.lang.Math
 /**
  * Models human reproduction
  */
-class NewPerson (val generation: Int, var dateOfBirth: Int) {
+class Person(val generation: Int, var dateOfBirth: Int) {
 
     fun willGiveBirth (chance: Double): Boolean = chance > 0.47
 
@@ -30,8 +30,8 @@ class NewPerson (val generation: Int, var dateOfBirth: Int) {
         return numOfChildren
     }
 
-    fun giveBirth (numberOfKids: Int, firstBirthAge: Int): kotlin.collections.MutableList<NewPerson> {
-        var newGeneration = mutableListOf<NewPerson>()
+    fun giveBirth (numberOfKids: Int, firstBirthAge: Int): kotlin.collections.MutableList<Person> {
+        var newGeneration = mutableListOf<Person>()
         if (numberOfKids <= 0) {
             println("For the next simulation, no kids will be born from the person from generation: " + this.generation)
             println("and year of birth: " + this.dateOfBirth)
@@ -41,7 +41,7 @@ class NewPerson (val generation: Int, var dateOfBirth: Int) {
         }
         else {
             for (i in 1..numberOfKids) {
-                val child = NewPerson(this.generation + 1, firstBirthAge)
+                val child = Person(this.generation + 1, firstBirthAge)
                 when (i) {
                     1 -> child.dateOfBirth = yearOfFirstBirth(dateOfBirth, firstBirthAge)
                     2 -> child.dateOfBirth = yearOfFirstBirth(dateOfBirth, firstBirthAge) + 3
