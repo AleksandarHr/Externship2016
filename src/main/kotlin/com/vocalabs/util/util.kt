@@ -33,15 +33,9 @@ fun <T, R> Iterable<T>.pmap(
 }
 
 fun histogram(items: Iterable<Int>): String {
-    val map = TreeMap<Int,Int>()
-    for (item in items) {
-        val oldCount = map.get(item)
-        val count = if (oldCount == null) 1 else 1+oldCount
-        map.put(item, count)
-    }
-
+    val counts = countDuplicates(items)
     val result = StringBuilder()
-    for (pair in map) {
+    for (pair in counts) {
         result.append("${pair.key} ")
         for (num in 1..pair.value) {
             result.append("#")
@@ -49,4 +43,15 @@ fun histogram(items: Iterable<Int>): String {
         result.append("\n")
     }
     return result.toString()
+}
+
+/** Find all duplicates and return a count of each item. */
+fun countDuplicates(items: Iterable<Int>): TreeMap<Int,Int> {
+    val counts = TreeMap<Int,Int>()
+    for (item in items) {
+        val oldCount = counts.get(item)
+        val count = if (oldCount == null) 1 else 1+oldCount
+        counts.put(item, count)
+    }
+    return counts
 }
