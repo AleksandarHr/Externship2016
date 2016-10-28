@@ -5,16 +5,19 @@ import java.util.*
 /**
  * Models human reproduction
  */
-data class Person(val generation: Int, var dateOfBirth: Int) {
+data class Person(val generation: Int,
+                  val dateOfBirth: Int,
+                  val minAgeAtFirstChild: Int = 15,
+                  val maxAgeAtFirstChild: Int = 70) {
 
     fun willGiveBirth (chance: Double): Boolean = chance > 0.47
 
     fun ageOfFirstBirth (rand: Random): Int {
         val age = Math.round(rand.nextGaussian() * 12 + 27).toInt()
         return when {
-            age < 15 -> ageOfFirstBirth(rand)
-            age > 70 -> ageOfFirstBirth(rand)
-            else     -> age
+            age < minAgeAtFirstChild -> ageOfFirstBirth(rand)
+            age > maxAgeAtFirstChild -> ageOfFirstBirth(rand)
+            else -> age
         }
     }
 
@@ -37,14 +40,15 @@ data class Person(val generation: Int, var dateOfBirth: Int) {
         //    number of kids above 5 is statistically rare enough to ignore
         if (numberOfKids in 1..5) {
             for (i in 1..numberOfKids) {
-                val child = Person(this.generation + 1, firstBirthAge)
-                when (i) {
-                    1 -> child.dateOfBirth = yearOfFirstBirth(dateOfBirth, firstBirthAge)
-                    2 -> child.dateOfBirth = yearOfFirstBirth(dateOfBirth, firstBirthAge) + 3
-                    3 -> child.dateOfBirth = yearOfFirstBirth(dateOfBirth, firstBirthAge) + 4
-                    4 -> child.dateOfBirth = yearOfFirstBirth(dateOfBirth, firstBirthAge) + 5
-                    5 -> child.dateOfBirth = yearOfFirstBirth(dateOfBirth, firstBirthAge) + 8
+                val birthDate: Int = when (i) {
+                    1 -> yearOfFirstBirth(dateOfBirth, firstBirthAge)
+                    2 -> yearOfFirstBirth(dateOfBirth, firstBirthAge) + 3
+                    3 -> yearOfFirstBirth(dateOfBirth, firstBirthAge) + 4
+                    4 -> yearOfFirstBirth(dateOfBirth, firstBirthAge) + 5
+                    5 -> yearOfFirstBirth(dateOfBirth, firstBirthAge) + 8
+                    else -> firstBirthAge
                 }
+                val child = Person(this.generation + 1, birthDate)
                 newGeneration.add(child)
             }
         }
